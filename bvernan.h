@@ -9,8 +9,5 @@ void encrypt(File_t *input, Key_t *key, File_t *output);
 //richiamo block che me lo cifra
 //riscrivo i file
 
-void encrypt_block(unsigned char *block, Key_t *key);
+void encrypt_block(unsigned char *block, long block_size, Key_t *key);
 //prende il blocco, lo divido per byte e applico lo xor
-
-
-// void encrypt_byte(unsigned char *byte, unsigned char *key_byte);

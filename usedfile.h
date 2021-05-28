@@ -1,16 +1,23 @@
+#define T_OUTPUT 0
+#define T_INPUT 1
+
 typedef struct File
 {
-    int fd; //filedescriptor per leggere il file
+    int fd;
     unsigned char* block;
-    //int position; //per capire a che posizione del file siamo arrivati
+    long block_size;
+    int type;
 } File_t;
 
-File_t *input_open_file(char *path);
+File_t *input_open_file(char *path, long block_size);
+//type = T_INPUT
 
-File_t *output_open_file(char *path);
+File_t *output_open_file(char *path, long block_size);
+//type = T_OUTPUT
 
-void read_next_block(File_t *file);
+int read_next_block(File_t *file);
+//int = numero byte letti = block_size
 
-void write_current_block(File_t *file);
+int write_current_block(File_t *file);
 
 void close_file(File_t *file);
