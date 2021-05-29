@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "keyfile.h"
 
 int get_file_lenght(FILE *file){

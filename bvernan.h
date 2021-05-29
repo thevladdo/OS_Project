@@ -1,3 +1,6 @@
+#ifndef BVERNAN_BVERNAN_H
+#define BVERNAN_BVERNAN_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "usedfile.h"
@@ -11,3 +14,5 @@ void encrypt(File_t *input, Key_t *key, File_t *output);
 
 void encrypt_block(unsigned char *block, long block_size, Key_t *key);
 //prende il blocco, lo divido per byte e applico lo xor
+
+#endif

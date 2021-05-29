@@ -21,7 +21,8 @@ File_t *input_open_file(char *path, long block_size){
 
 File_t *output_open_file(char *path, long block_size){
     File_t *file = create_file(path,block_size,T_OUTPUT);
-    file->fd = open(path,O_WRONLY);
+    file->fd = open(path,O_CREAT | O_WRONLY,0644);
+    if(file->fd < 0) perror(path);
     return file;
 }
 
@@ -41,6 +42,7 @@ int read_next_block(File_t *file){
 int write_current_block(File_t *file){
     if (file->type != T_OUTPUT) return 0;
     int writed_bytes = write(file->fd, file->block, file->block_size);
+    if (writed_bytes < 0) perror("writing block!");
     file->block = NULL;
     return writed_bytes;
 }

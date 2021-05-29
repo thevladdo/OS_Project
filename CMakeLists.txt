@@ -1,9 +1,6 @@
 cmake_minimum_required(VERSION 3.0.0)
 project(bvernan VERSION 0.1.0)
 
-include(CTest)
-enable_testing()
-
 add_executable(bvernan main.c keyfile.h keyfile.c usedfile.h usedfile.c bvernan.h bvernan.c)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})

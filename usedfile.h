@@ -1,3 +1,6 @@
+#ifndef BVERNAN_USEDFILE_H
+#define BVERNAN_USEDFILE_H
+
 #define T_OUTPUT 0
 #define T_INPUT 1
 
@@ -18,3 +21,5 @@ int read_next_block(File_t *file);
 int write_current_block(File_t *file);
 
 void close_file(File_t *file);
+
+#endif
