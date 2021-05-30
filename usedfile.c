@@ -2,7 +2,16 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <sys/stat.h>
+#include <errno.h>
 #include "usedfile.h"
+
+int isDirectory(const char *path) {
+   struct stat statbuf;
+   if (stat(path, &statbuf) != 0)
+       return 0;
+   return S_ISDIR(statbuf.st_mode);
+}
 
 File_t *create_file(char *path, long block_size,int type){
     File_t *file = malloc(sizeof(File_t));
@@ -16,13 +25,18 @@ File_t *input_open_file(char *path, long block_size){
     File_t *file = create_file(path,block_size,T_INPUT);
     file->block = malloc(block_size);
     file->fd = open(path,O_RDONLY);
+    if(isDirectory(path)){
+        errno = EISDIR;
+        return NULL;
+    }
+    if (file->fd < 0) return NULL;
     return file;
 }
 
 File_t *output_open_file(char *path, long block_size){
     File_t *file = create_file(path,block_size,T_OUTPUT);
     file->fd = open(path,O_CREAT | O_WRONLY,0644);
-    if(file->fd < 0) perror(path);
+    if(file->fd < 0) return NULL;
     return file;
 }
 

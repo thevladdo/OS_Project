@@ -15,10 +15,22 @@ int main(int argc, char** argv) {
     }
 
     Key_t *key = open_file(argv[1]);
+    if (key == NULL){
+        perror(argv[1]);
+        return 1;
+    }
 
     File_t *input = input_open_file(argv[2],key->lenght);
+    if (input == NULL){
+        perror(argv[2]);
+        return 1;
+    }
 
     File_t *output = output_open_file(argv[3],key->lenght);
+    if (output == NULL){
+        perror(argv[3]);
+        return 1;
+    }
 
     encrypt(input,key,output);
 

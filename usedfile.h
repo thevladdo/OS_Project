@@ -22,4 +22,6 @@ int write_current_block(File_t *file);
 
 void close_file(File_t *file);
 
+int isDirectory(const char *path);
+
 #endif
