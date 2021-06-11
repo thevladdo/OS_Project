@@ -32,13 +32,6 @@ File_t *open_file(const char *input_path, const char *output_path, long block_si
     return file;
 }
 
-void close_file(File_t *file){
-    close(file->fd_input);
-    close(file->fd_output);
-    free(file->block);
-    free(file);
-}
-
 int read_next_block(File_t *file){
     int readed_bytes = read(file->fd_input, file->block, file->block_size); 
     file->block_size = readed_bytes;
@@ -50,5 +43,9 @@ int write_current_block(File_t *file){
     return writed_bytes;
 }
 
-
-
+void close_file(File_t *file){
+    close(file->fd_input);
+    close(file->fd_output);
+    free(file->block);
+    free(file);
+}

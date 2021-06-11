@@ -9,9 +9,9 @@
 /**
  * @brief Function that encrypts and decripts files
  * 
- * @param file File that will be used for encrypt
+ * @param file File that will be encrypted or decrypted
  * @param key File used as key to encrypt and decrypt the input file
- * @return int Control int
+ * @return int Error control int
  */
 int encrypt(File_t *file, Key_t *key);
 
