@@ -6,8 +6,20 @@ typedef struct Key{
     int lenght;
 } Key_t;
 
-Key_t *open_file(char *path);
+/**
+ * @brief Allocating memory and opening the file that will be used as the key
+ * 
+ * @param path Path of the file
+ * @return Key_t* Pointer to the key file
+ */
+Key_t *open_key_file(char *path);
 
+
+/**
+ * @brief Deallocation of the memory allocated in the previous function
+ * 
+ * @param key The file used as the key
+ */
 void free_key(Key_t *key);
 
 #endif 

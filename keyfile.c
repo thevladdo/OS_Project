@@ -11,7 +11,7 @@ int get_file_lenght(FILE *file){
     return lenght;
 }
 
-Key_t *open_file(char *path){
+Key_t *open_key_file(char *path){
     Key_t *key = malloc(sizeof(Key_t));
     FILE *file = fopen(path,"r");
     if(isDirectory(path)){

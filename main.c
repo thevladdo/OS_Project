@@ -14,31 +14,24 @@ int main(int argc, char** argv) {
         return 0;
     }
 
-    Key_t *key = open_file(argv[1]);
+    Key_t *key = open_key_file(argv[1]);
     if (key == NULL){
         perror(argv[1]);
         return 1;
     }
 
-    File_t *input = input_open_file(argv[2],key->lenght);
-    if (input == NULL){
+    File_t *file = open_file(argv[2],argv[3],key->lenght);
+    if (file == NULL){
         perror(argv[2]);
         return 1;
     }
 
-    File_t *output = output_open_file(argv[3],key->lenght);
-    if (output == NULL){
-        perror(argv[3]);
-        return 1;
-    }
+    int encrypt_result = encrypt(file,key);
 
-    encrypt(input,key,output);
-
-    close_file(input);
-    close_file(output);
+    close_file(file);
     free_key(key);
 
-    printf("File encrypted succesfully!\n");
+    if(encrypt_result == 0) printf("File encrypted succesfully!\n");
 
     return 0;
 }
