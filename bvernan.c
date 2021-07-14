@@ -1,14 +1,15 @@
 #include "bvernan.h"
 
-void encrypt_block(unsigned char *block, long block_size, Key_t *key){
-    for(int i=0; i<block_size ;i++){
-        block[i] = block[i]^key->buffer[i];
+void encrypt_block(File_t *file, Key_t *key){
+    for(int i=0; i<file->block_size; i++){ 
+        int key_position = (i+file->block_number)%key->lenght;
+        file->block[i] = file->block[i]^key->buffer[key_position];
     }
 }
 
 int encrypt(File_t *file, Key_t *key){
     while(read_next_block(file) > 0){
-        encrypt_block(file->block, file->block_size, key);
+        encrypt_block(file, key);
         int result = write_current_block(file);
         if (result <= 0){
             perror("writing block!");

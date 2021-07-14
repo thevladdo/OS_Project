@@ -17,6 +17,7 @@ File_t *create_file(const char *input_path, const char *output_path, long block_
     File_t *file = malloc(sizeof(File_t));
     file->block = malloc(block_size);
     file->block_size = block_size;
+    file->block_number = -1;
     return file;
 }
 
@@ -35,6 +36,7 @@ File_t *open_file(const char *input_path, const char *output_path, long block_si
 int read_next_block(File_t *file){
     int readed_bytes = read(file->fd_input, file->block, file->block_size); 
     file->block_size = readed_bytes;
+    file->block_number++;
     return readed_bytes;
 }
 

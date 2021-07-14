@@ -7,6 +7,7 @@ typedef struct File
     long block_size;
     int fd_input;
     int fd_output;
+    int block_number;
 } File_t;
 
 /**

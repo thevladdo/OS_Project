@@ -20,10 +20,9 @@ int encrypt(File_t *file, Key_t *key);
  *        encrypts them one by one and then reassembles them 
  *        in the output file
  * 
- * @param block Block that will be encrypted
- * @param block_size Size of the block that will be encrypted
+ * @param file File that will be encrypted or decrypted
  * @param key File used as key to encrypt and decrypt
  */
-void encrypt_block(unsigned char *block, long block_size, Key_t *key);
+void encrypt_block(File_t *file, Key_t *key);
 
 #endif
